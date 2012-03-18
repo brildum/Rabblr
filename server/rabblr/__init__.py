@@ -38,6 +38,11 @@ def is_valid_event(event):
             isinstance(event.get('room'), basestring) and
             isinstance(event.get('data'), dict))
 
+def add_to_list(l, max_items, item):
+    if len(l) + 1 > max_items:
+        l.pop(0)
+    l.append(item)
+
 class ChatRoom(object):
     rooms = {}
 
@@ -54,6 +59,7 @@ class ChatRoom(object):
         self.session_usernames = {}
         self.connections = {}
         self.user_count = 0
+        self.prev_messages = []
 
     def set_username(self, conn, username):
         sid = conn.session.session_id
@@ -67,6 +73,7 @@ class ChatRoom(object):
                 {'username': username, 'message': message})
         for conn in self.connections.itervalues():
             conn.send(message_event)
+        add_to_list(self.prev_messages, 12, message_event)
 
     def add_connection(self, conn):
         sid = conn.session.session_id
@@ -152,6 +159,8 @@ class ChatConnection(sockt.SockJSConnection):
         self.room = ChatRoom.get_or_create_room(room)
         self.room.add_connection(self)
         self.send(create_event('roomSet', self.room.name, {'count': self.room.user_count}))
+        for msg_event in self.room.prev_messages:
+            self.send(msg_event)
 
 class SetCookieHandler(web.RequestHandler):
     SUPPORTED_METHODS = ['POST']
