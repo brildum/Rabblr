@@ -4,6 +4,8 @@ rabblr.Chat = function(room) {
     this.room = room;
     this.userIsSet = false;
     this.socket = new SockJS(rabblr.URI_BASE + rabblr.CHAT_PATH);
+    this.lastMessageSent = new Date();
+    this.invalidMessageAttempts = 0;
     this.socket.onopen = function() {
         self.onSocketOpen();
     };
@@ -29,7 +31,26 @@ rabblr.Chat.prototype.sendMessage = function(message) {
         this.dispatchEvent("error", {message: "You must set a username before you can chat"});
     }
     else {
-        this.socket.send(this.encodeEvent("msg", {message: message}));
+        var now = new Date();
+        var timeDiff = now - this.lastMessageSent;
+        var messageAllowed = true;
+        if (timeDiff > 500) {
+            this.invalidMessageAttempts = 0;
+        }
+        else {
+            if (this.invalidMessageAttempts > 0) {
+                messageAllowed = false;
+            }
+            this.invalidMessageAttempts += 1;
+        }
+
+        if (messageAllowed) {
+            this.socket.send(this.encodeEvent("msg", {message: message}));
+            this.lastMessageSent = now;
+        }
+        else {
+            this.dispatchEvent("error", {message: "You cannot send messages so quickly."});
+        }
     }
 };
 
