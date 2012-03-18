@@ -10,6 +10,7 @@ jQuery.noConflict();
         var chat = new rabblr.Chat(url);
         var ui = new rabblr.UI($);
         var errorHandler = function(data) {
+            mixpanel.rabblr.track('error', {message: data.message, url: url});
             ui.showError(data.message);
         };
         chat.addEventListener("error", errorHandler);
