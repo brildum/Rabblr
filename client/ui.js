@@ -76,13 +76,19 @@ rabblr.UI.prototype.setRoomCount = function(count) {
 };
 
 rabblr.UI.prototype.showError = function(errMsg) {
+    var atBottom = this.messagesDiv[0].scrollHeight == this.messagesDiv[0].clientHeight;
     this.messagesDiv.append('<div class="rabblr_error">Error: ' + errMsg + '</div>');
-    this.messagesDiv.scrollTop(this.messagesDiv[0].scrollHeight);
+    if (atBottom) {
+        this.messagesDiv.scrollTop(this.messagesDiv[0].scrollHeight);
+    }
 };
 
 rabblr.UI.prototype.showMessage = function(user, message) {
+    var atBottom = this.messagesDiv[0].scrollHeight == this.messagesDiv[0].clientHeight;
     this.messagesDiv.append('<div class="rabblr_message"><b>' + user + ':</b> ' + message + '</div>');
-    this.messagesDiv.scrollTop(this.messagesDiv[0].scrollHeight);
+    if (atBottom) {
+        this.messagesDiv.scrollTop(this.messagesDiv[0].scrollHeight);
+    }
 };
 
 rabblr.UI.prototype.userMessageFormSubmitted = function() {
