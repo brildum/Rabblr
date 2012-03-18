@@ -9,10 +9,10 @@ rebuild:
 	$(MAKE) clean
 	$(MAKE) build
 
-build: $(build_dir)/rabblr.js $(build_dir)/rabblr.css $(build_dir)/index.html $(build_dir)/rabblr.conf
+build: $(build_dir)/rabblr.js $(build_dir)/rabblr.css $(build_dir)/rabblr.conf
 	cp $(build_dir)/rabblr.js $(static_dir)/rabblr.js
 	cp $(build_dir)/rabblr.css $(static_dir)/rabblr.css
-	cp $(build_dir)/index.html $(static_dir)/index.html
+	cp client/index.html $(static_dir)/
 	cp -R client/bootstrap $(static_dir)/
 
 clean:
@@ -21,9 +21,6 @@ clean:
 
 $(build_dir)/rabblr.conf: server/nginx/rabblr.conf
 	cp server/nginx/rabblr.conf $(build_dir)/rabblr.conf
-
-$(build_dir)/index.html: client/index.html
-	cp client/index.html $(build_dir)/index.html
 
 $(build_dir)/rabblr.js: $(client_paths) client/rabblr.css
 	cat $(client_paths) > $(build_dir)/rabblr.uncompressed.js

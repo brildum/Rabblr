@@ -21,6 +21,7 @@ rabblr.UI = function(jQuery) {
                     '<input type="button" value="Set username" id="rabblr_user_submit"/>' +
                 '</div></div>' +
             '</div>' +
+            '<iframe id="rabblr_user_iframe" name="rabblr_user_iframe" width="0" height="0" style="display:none;"></iframe>' +
         '</div>'
     );
 

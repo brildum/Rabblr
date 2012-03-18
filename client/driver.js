@@ -19,13 +19,19 @@ jQuery.noConflict();
             mixpanel.rabblr.track('set_username', {username: data.username, url: url});
             chat.setUsername(data.username);
         });
+        var setPuserCookie = function(username) {
+            if (document.getElementById("rabblr_user_iframe")) {
+                var form = document.createElement('form');
+                form.method = "POST";
+                form.action = rabblr.URI_BASE + "/set/puser/" + username;
+                form.target = "rabblr_user_iframe";
+                form.submit();
+            }
+        };
         chat.addEventListener("usernameSet", function(data) {
             ui.setUsername(data.username);
             ui.focusMessageInput();
-            $.ajax({
-                type: 'POST',
-                url: rabblr.URI_BASE + "/set/puser/" + data.username
-            });
+            setPuserCookie(data.username);
         });
         chat.addEventListener("roomSet", function(data) {
             ui.setRoomCount(data.count);
