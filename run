@@ -1,0 +1,5 @@
+#!/bin/sh
+
+PATH=/opt/blabbler/env/bin:$PATH
+python server/rabblr/__init__.py
+

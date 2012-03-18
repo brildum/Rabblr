@@ -1,0 +1,68 @@
+#rabblr {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 300px;
+    height: 500px;
+    background: #ccc;
+    border-top: 1px solid #666;
+    border-left: 1px solid #666;
+    z-index: 9999;
+    text-align: left;
+    line-height: 14px;
+}
+#rabblr, #rabblr input {
+    font-family: arial;
+    font-size: 12px;
+    color: #000;
+}
+#rabblr form {
+    margin: 0;
+}
+.rabblr_padding {
+    padding: 4px;
+}
+.rabblr_right {
+    float: right;
+}
+.rabblr_clear {
+    clear: both;
+}
+.rabblr_hide {
+    display: none;
+}
+#rabblr_username {
+    position: absolute;
+    width: 292px;
+    background: #ccc;
+}
+#rabblr_messages {
+    height: 400px;
+    overflow-y: scroll;
+    background: #fff;
+    border: 1px solid #666;
+}
+.rabblr_message {
+    padding: 2px;
+}
+.rabblr_error {
+    padding: 2px;
+    color: #ff0000;
+    font-weight: bold;
+}
+#rabblr input.rabblr_text {
+    padding: 2px;
+    border: 1px solid #666;
+}
+#rabblr input {
+    margin: 0;
+}
+#rabblr #rabblr_chat_input {
+    margin-top: 2px;
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+#rabblr #rabblr_user_input {
+    width: 150px;
+}

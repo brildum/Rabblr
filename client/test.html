@@ -1,0 +1,22 @@
+<html>
+<head>
+    <title>Rabblr Test Client</title>
+    <link rel="stylesheet" href="rabblr.css" type="text/css"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="sockjs.min.js"></script>
+    <script type="text/javascript">
+        var rabblr = {};
+        rabblr.DOMAIN = "localhost";
+        rabblr.URI_BASE = "http://" + rabblr.DOMAIN + ":5000";
+        rabblr.CHAT_PATH = '/chat';
+    </script>
+    <script type="text/javascript" src="mixpanel.js"></script>
+    <script type="text/javascript" src="util.js"></script>
+    <script type="text/javascript" src="chat.js"></script>
+    <script type="text/javascript" src="ui.js"></script>
+    <script type="text/javascript" src="driver.js"></script>
+</head>
+<body>
+    <div id="rabblr_container"></div>
+</body>
+</html>

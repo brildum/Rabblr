@@ -1,0 +1,1 @@
+javascript:(function(){if(typeof rabblr==='undefined'){var a,b,c,d;a='http://rabblr.com/rabblr.';b=document.createElement('link');b.href=a+'css';b.rel='stylesheet';b.type='text/css';c=document.createElement('script');c.src=a+'js';d=document.createElement('div');d.id='rabblr_container';document.body.appendChild(b);document.body.appendChild(c);document.body.appendChild(d);}})()
