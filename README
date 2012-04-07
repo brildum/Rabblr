@@ -1,0 +1,18 @@
+
+Rabblr is a Bookmarklet that allows you to chat on any website. It is running on
+http://rabblr.com for anyone to use.
+
+There are 2 components:
+
+1. JavaScript client (using sockjs, jQuery)
+2. Python server (using Tornado, sockjs-tornado)
+
+To build the client, download yuicompressor from Yahoo and run:
+
+make build
+
+This will create the following files in the static/ directory:
+
+1. A single JavaScript file (with all JS included), minimized using yuicompressor
+2. A single CSS file
+3. Bootstrap-based HTML files for the Rabblr homepage
