@@ -10,6 +10,8 @@ rebuild:
 	$(MAKE) build
 
 build: $(build_dir)/rabblr.js $(build_dir)/rabblr.css $(build_dir)/rabblr.conf
+	mkdir $(static_dir)
+	mkdir $(build_dir)
 	cp $(build_dir)/rabblr.js $(static_dir)/rabblr.js
 	cp $(build_dir)/rabblr.css $(static_dir)/rabblr.css
 	cp client/index.html $(static_dir)/
